@@ -47,10 +47,10 @@ public class ReviewsController {
 	public ResponseEntity<String> updateReview(@PathVariable Long companyId, @PathVariable Long reviewId, @RequestBody Reviews review){
 		boolean isUpdated = reviewsService.updateReview(companyId,reviewId,review);
 		if(isUpdated) {
-			return new ResponseEntity<>("Update successfully",HttpStatus.ACCEPTED);
+			return new ResponseEntity<>("Review Updated successfully",HttpStatus.ACCEPTED);
 		}
 		else {
-			return new ResponseEntity<>("Update unsuccessfull",HttpStatus.NOT_MODIFIED);
+			return new ResponseEntity<>("Review Update unsuccessfull",HttpStatus.NOT_MODIFIED);
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class ReviewsController {
 	public ResponseEntity<String> deleteReviewById(@PathVariable Long companyId, @PathVariable Long reviewId){
 		boolean isReviewDeleted = reviewsService.deleteReviewById(companyId,reviewId);
 		if(isReviewDeleted) {
-			return new ResponseEntity<>("Review Delete Successfully",HttpStatus.OK);
+			return new ResponseEntity<>("Review Delete Successfully!!!",HttpStatus.OK);
 		}
 		else {
 			return new ResponseEntity<>("Review Record Not Found",HttpStatus.NOT_FOUND);
