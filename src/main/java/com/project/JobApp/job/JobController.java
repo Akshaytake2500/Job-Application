@@ -53,7 +53,7 @@ public class JobController {
 	public ResponseEntity<String> updateJob(@RequestBody Job job, @PathVariable Long id) {
 		boolean updatedJob = jobService.updateJobById(job, id);
 		if(updatedJob) {
-			return ResponseEntity.ok("Updated successfully");			
+			return ResponseEntity.ok("Job updated successfully");			
 		}
 		else {
 			return ResponseEntity.notFound().build();
