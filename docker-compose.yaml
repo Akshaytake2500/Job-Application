@@ -1,0 +1,38 @@
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: akshay
+      POSTGRES_PASSWORD: akshay
+      PGDATA: /data/postgres
+    volumes: 
+      - postgres:/data/postgres
+    ports: 
+      - "5432:5432"
+    networks: 
+      - postgres
+    restart: unless-stopped
+
+  pgadmin: 
+    container_name: pgadmin_container  # Correct key is container_name, not container-name
+    image: dpage/pgadmin4
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes: 
+      - pgadmin:/var/lib/pgadmin
+    ports: 
+      - "5050:80"
+    networks: 
+      - postgres
+    restart: unless-stopped
+
+networks:  # Should be at root level, not under pgadmin
+  postgres:
+    driver: bridge
+
+volumes:  # Also should be at root level
+  postgres:
+  pgadmin:
